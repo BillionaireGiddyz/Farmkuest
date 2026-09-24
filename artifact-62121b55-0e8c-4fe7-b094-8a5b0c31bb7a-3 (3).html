@@ -1,0 +1,543 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173f35">
+<meta name="description" content="FarmKuest: SMS-first crop management and farm records, from planting to harvest.">
+<title>FarmKuest — Every season tells a story</title>
+
+<style>
+:root{
+ --bg:#f7f5ee;--paper:#fffef9;--ink:#173f35;
+ --muted:#626e64;--line:#dce0d3;--lime:#d9ebaa;
+ --soft:#edf1e5;--amber:#fff0d3;--blue:#e8f0f2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+h1,h2,h3,p{margin:0}
+h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.05;letter-spacing:-1.8px}
+h1{font-size:clamp(54px,8vw,100px)}
+h2{font-size:clamp(34px,5vw,55px)}
+h3{font-size:19px}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button,summary{cursor:pointer}
+button,a,input,select,textarea,summary{touch-action:manipulation}
+:focus-visible{outline:3px solid #b47430;outline-offset:4px}
+.wrap{width:min(1120px,100%);margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:23px;letter-spacing:-1px;font-weight:800;text-decoration:none}
+.brand span{display:inline-grid;place-items:center;width:31px;height:31px;border-radius:50% 50% 7px 50%;background:var(--ink);color:var(--lime);font-family:Georgia,serif;margin-right:6px}
+.btn{display:inline-flex;justify-content:center;align-items:center;min-height:46px;padding:11px 17px;border:1px solid var(--ink);border-radius:8px;background:var(--ink);color:white;font-weight:700;text-decoration:none;line-height:1.4}
+.btn.light{background:transparent;color:var(--ink);border-color:#b9c4b1}
+.btn.small{font-size:13px;padding:10px 12px}
+button:hover,.btn:hover{filter:brightness(.94)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:55px;align-items:center;padding:65px 0}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}
+.hero h1{margin:24px 0}
+.hero em{color:#748e49}
+.lead{font-size:18px;color:var(--muted);max-width:500px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}
+.small{font-size:13px}
+.muted{color:var(--muted)}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+.art{position:relative;min-height:445px;border-radius:130px 130px 18px 18px;overflow:hidden;background:#dce6c8}
+.art svg{position:absolute;width:100%;height:100%;inset:0}
+.sms-card{position:absolute;bottom:22px;left:22px;right:22px;background:var(--paper);padding:20px;border-radius:13px}
+.bubble{padding:13px;background:var(--soft);border-radius:0 12px 12px 12px;font-size:14px;margin-top:12px}
+.reply{background:var(--ink);color:white;border-radius:12px 0 12px 12px;padding:9px 14px;margin:10px 0 0 auto;width:max-content;max-width:100%;font-size:14px}
+.strip{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-block:1px solid var(--line);padding:22px 0;font-size:14px}
+section.pitch{padding:65px 0}
+.section-intro{margin-bottom:28px}
+.section-intro h2{margin-top:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid var(--line);background:var(--paper);padding:25px;border-radius:16px}
+.card p{font-size:15px;color:var(--muted);margin-top:12px}
+.card .eyebrow{display:block;margin-bottom:22px;color:var(--muted)}
+.dark{background:var(--ink);color:var(--bg)}
+.dark p{color:#d0d9cb}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:55px}
+.step{padding:18px 0;border-bottom:1px solid #ffffff30}
+.step p{font-size:14px;margin-top:7px}
+.tag{display:inline-block;font-size:11px;font-weight:700;background:var(--soft);color:var(--ink);padding:5px 10px;border-radius:30px}
+.demo-area{padding:55px 0;background:#e9eddf}
+#demo{scroll-margin-top:85px}
+.demo-opening{list-style:none;background:var(--ink);color:white;border-radius:14px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:80px}
+.demo-opening::-webkit-details-marker{display:none}
+.demo-opening strong{display:block;font-size:19px}
+.demo-opening small{color:#d4dfc8}
+.demo-opening .arrow{font-size:30px}
+details[open]>.demo-opening{border-radius:14px 14px 0 0}
+details[open]>.demo-opening .arrow{transform:rotate(45deg)}
+.app{background:var(--paper);border:1px solid #cbd4c0;border-top:0;border-radius:0 0 14px 14px;overflow:hidden}
+.app-head{padding:20px;border-bottom:1px solid var(--line)}
+.app-head strong{font-size:20px}
+.alert{padding:12px 14px;border-radius:8px;background:var(--amber);font-size:13px;color:#73501d;margin-top:15px}
+.tabs{display:flex;overflow:auto;gap:7px;padding:12px;border-bottom:1px solid var(--line);background:#f2f4ea}
+.tabs button{flex-shrink:0;min-height:45px;border:0;background:transparent;color:var(--ink);padding:10px 14px;border-radius:7px;font-size:14px;font-weight:700}
+.tabs button.active{background:var(--ink);color:white}
+.panel{padding:23px}
+.panel[hidden]{display:none}
+.panel>h3{font-size:24px;margin-bottom:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:20px}
+.box{border:1px solid var(--line);padding:20px;border-radius:12px;background:white;min-width:0}
+.box h4{margin:0 0 13px}
+.weather{background:var(--blue)}
+.temp{font:58px/1 Georgia,serif;margin:19px 0 9px}
+.metrics{display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid #ccd9d6;margin-top:20px;font-size:13px}
+.metrics strong{display:block;font-size:16px}
+.field{margin-top:14px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+input,select,textarea{width:100%;min-width:0;min-height:47px;border:1px solid #bcc8b5;border-radius:7px;padding:10px;background:white;color:var(--ink)}
+textarea{min-height:85px;resize:vertical}
+form .btn{margin-top:17px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stack{display:grid;gap:17px;align-content:start}
+.progress{display:flex;gap:5px;margin:19px 0 12px}
+.progress span{height:7px;flex:1;background:var(--line);border-radius:5px}
+.progress span.on{background:#6f8c4b}
+.statbar{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:20px}
+.statbar>div{padding:14px;background:var(--soft);border-radius:9px}
+.statbar strong{display:block;font:27px Georgia,serif;margin-top:8px}
+.statbar small{font-size:11px}
+.entry{padding:13px 0;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}
+.entry small{display:block;color:var(--muted);margin-top:4px}
+.app-footer{border-top:1px solid var(--line);padding:15px 20px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;text-decoration:underline;color:var(--ink);padding:10px;min-height:44px}
+.closing{background:var(--lime);padding:35px;border-radius:18px;margin-top:30px}
+footer{padding:25px 0;color:var(--muted);font-size:13px}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:white;padding:13px 20px;border-radius:9px;z-index:100;width:max-content;max-width:90%;font-size:14px;box-shadow:0 6px 30px #0003}
+#toast[hidden]{display:none}
+@media(max-width:700px){
+ .hero,.split,.grid3,.grid2{grid-template-columns:1fr}
+ .hero{padding:38px 0;gap:30px}
+ .hero h1{font-size:62px}
+ .art{min-height:365px;border-radius:100px 100px 16px 16px}
+ .strip{display:grid;gap:13px}
+ section.pitch{padding:45px 0}
+ .panel{padding:16px}
+ .box{padding:17px}
+ .split{gap:25px}
+ .row2{gap:10px}
+ .statbar strong{font-size:22px}
+ .statbar>div{padding:12px 9px}
+ .demo-area{padding:38px 0}
+ nav .btn{font-size:12px;padding:10px}
+ .brand{font-size:21px}
+ .closing{padding:25px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+ header{position:static}
+ .demo-area,.actions,footer button,nav .btn{display:none}
+ section.pitch{padding:25px 0}
+ .hero{padding:20px 0}
+ .card{break-inside:avoid}
+ body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+
+<body>
+<header>
+ <nav class="wrap">
+  <a class="brand" href="#"><span>f</span>FarmKuest</a>
+  <a class="btn small" href="#demo" data-open-demo>Explore demo ↗</a>
+ </nav>
+</header>
+
+<main>
+<div class="wrap">
+ <section class="hero">
+  <div>
+   <div class="eyebrow">Built around the farmer</div>
+   <h1>Every season<br>tells a <em>story.</em><br>Keep yours.</h1>
+   <p class="lead">Weather updates, timely check-ins, and farm records—from the first planting to the last crate. All through the simplicity of SMS.</p>
+   <div class="actions">
+    <a class="btn" href="#demo" data-open-demo>Try FarmKuest ↗</a>
+    <a class="btn light" href="#approach">How it works</a>
+   </div>
+   <p class="note">Early-stage concept · Interactive prototype · Proposed Kenya-first pilot</p>
+  </div>
+
+  <div class="art">
+   <svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="500" height="500" fill="#dce6c8"/>
+    <circle cx="355" cy="95" r="42" fill="#efd697"/>
+    <path d="M0 210Q120 80 280 210T520 190V500H0" fill="#adbd8d"/>
+    <path d="M0 270Q145 165 325 250T520 220V500H0" fill="#7d9965"/>
+    <path d="M0 340Q210 235 500 310V500H0" fill="#446e4d"/>
+    <path d="M282 265Q210 350 100 500" fill="none" stroke="#d5bd8b" stroke-width="25"/>
+    <g stroke="#92ae73" stroke-width="5" fill="none">
+     <path d="M330 280L470 500"/><path d="M370 282L525 475"/>
+     <path d="M215 305L0 405"/><path d="M188 350L0 445"/>
+    </g>
+    <path d="M115 216h42v32h-42z" fill="#f6eedc"/>
+    <path d="M105 216l31-23 31 23z" fill="#906347"/>
+   </svg>
+   <div class="sms-card">
+    <strong>FarmKuest</strong> <span class="small muted">· Example SMS</span>
+    <div class="bubble">How did today's harvest go? Reply in crates, bags, or kilograms.</div>
+    <div class="reply">Harvested 6 crates</div>
+    <p class="note">A simple reply. A season remembered.</p>
+   </div>
+  </div>
+ </section>
+
+ <div class="strip">
+  <span>01 &nbsp; SMS-first, not app-dependent</span>
+  <span>02 &nbsp; Agronomist-reviewed guidance</span>
+  <span>03 &nbsp; Planting-to-harvest records</span>
+ </div>
+
+ <section class="pitch">
+  <div class="section-intro">
+   <div class="eyebrow">The problem we aim to validate</div>
+   <h2>The work happens.<br>The records don't always follow.</h2>
+  </div>
+  <div class="grid3">
+   <article class="card"><span class="eyebrow">Activities</span><h3>“I forgot to write it down.”</h3><p>Planting dates, inputs, and field observations can get scattered across memory, notebooks, and messages.</p></article>
+   <article class="card"><span class="eyebrow">Decisions</span><h3>“What needs attention today?”</h3><p>Weather information becomes more useful when connected to the plot, crop stage, and an agronomist-reviewed plan.</p></article>
+   <article class="card"><span class="eyebrow">Harvest</span><h3>“What did this season bring in?”</h3><p>Different buyers, multiple pickings, and partial payments make a season difficult to reconstruct.</p></article>
+  </div>
+ </section>
+</div>
+
+<section class="pitch dark" id="approach">
+ <div class="wrap split">
+  <div>
+   <div class="eyebrow">The FarmKuest approach</div>
+   <h2 style="margin:18px 0">A conversation.<br>Not another form.</h2>
+   <p>Turn everyday replies into useful farm records. Clarify missing information instead of inventing it.</p>
+  </div>
+  <div>
+   <div class="step"><h3>01 · Register the plot and crop</h3><p>Start with planting details and location, with field-officer assistance when needed.</p></div>
+   <div class="step"><h3>02 · Send a useful check-in</h3><p>Combine reviewed schedules and weather information. No reply stays unconfirmed.</p></div>
+   <div class="step"><h3>03 · Keep the season's history</h3><p>Record observations, inputs, harvests, sales, and payments as separate events.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="demo-area">
+ <div class="wrap">
+  <div class="section-intro">
+   <div class="eyebrow">Try the product</div>
+   <h2>A day on the farm.</h2>
+   <p class="muted" style="margin-top:12px">Tap the bar below to open or close the dashboard.</p>
+  </div>
+
+  <!-- Native HTML: this opener works even when scripts are blocked. -->
+  
+ </div>
+</section>
+
+<section class="pitch">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">The venture hypothesis</div><h2>Useful to the farmer.<br>Valuable to the network.</h2></div>
+  <div class="grid3">
+   <article class="card"><span class="eyebrow">Customer</span><h3>Farmers use it. Partners may fund it.</h3><p>Test subscriptions with cooperatives, grower groups, and off-takers that need better production records. No revenue or paying customers are claimed.</p></article>
+   <article class="card"><span class="eyebrow">Differentiation</span><h3>Recordkeeping through conversation.</h3><p>Combine low-friction check-ins, crop context, and harvest-to-payment history. Validate the advantage through farmer interviews and competitor research.</p></article>
+   <article class="card"><span class="eyebrow">Trust</span><h3>Keep the unknowns visible.</h3><p>Separate forecasts from measurements and self-reports from verified facts. Share farmer records only with permission.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="pitch dark">
+ <div class="wrap split">
+  <div><div class="eyebrow">Why an AI bootcamp?</div><h2 style="margin:18px 0">Test the hard part.<br>Not just the dashboard.</h2><p>Interpret short, local, imperfect messages reliably—and know when to ask another question.</p></div>
+  <div>
+   <div class="step"><h3>Model strategy</h3><p>Evaluate suitable Mistral models for structured extraction and grounded summaries. Measure accuracy, cost, and local-language performance.</p></div>
+   <div class="step"><h3>Data strategy</h3><p>Start with reviewed synthetic examples, then consented pilot messages. Test ambiguity handling and avoidance of unsupported agricultural advice.</p></div>
+   <div class="step"><h3>Production path</h3><p>Web portal → authenticated API → PostgreSQL → SMS, weather, and model services. Azure is a proposed hosting option, subject to eligible credits and operating costs.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="pitch">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">Focused validation</div><h2>One region. One crop.<br>One useful first season.</h2></div>
+  <div class="grid3">
+   <article class="card"><span class="eyebrow">Now</span><h3>Interactive prototype</h3><p>Local crop records, fixed-rule SMS simulation, and a testable product hypothesis. No live integrations or pilot traction claimed.</p></article>
+   <article class="card"><span class="eyebrow">Proposed weeks 1–3</span><h3>Validate the assumptions</h3><p>Recruit an agronomist collaborator, interview farmers and a potential partner, select one crop, and build an evaluation dataset.</p></article>
+   <article class="card"><span class="eyebrow">Proposed weeks 4–6</span><h3>Test the end-to-end loop</h3><p>Connect inbound SMS and structured records. If recruitment permits, run a supervised pilot measuring response rate, record accuracy, and willingness to pay.</p></article>
+  </div>
+  <div class="closing">
+   <div class="eyebrow">The ask</div>
+   <h2 style="margin:15px 0">Help make it field-tested.</h2>
+   <p>Seeking technical mentorship, agronomy collaboration, model evaluation support, and introductions to pilot partners.</p>
+   <a href="#demo" data-open-demo class="btn" style="margin-top:22px">Explore FarmKuest ↗</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <strong>FarmKuest</strong> · Concept & interactive prototype
+  <br>No live agricultural advice.
+  <button class="linkbtn" id="print">Save pitch as PDF / Print</button>
+ </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const KEY="farmkuest-mobile-demo-v2";
+const stages=["Planted","Vegetative","Flowering","Fruiting","Harvesting"];
+const format=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+const escape=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const id=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
+const date=(offset=0)=>{
+ const d=new Date();d.setDate(d.getDate()+offset);
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+};
+const fresh=()=>({
+ version:2,crop:{plot:"Turi, Molo · Demo plot",name:"Tomatoes",planted:date(-35),expected:date(40),lat:"",lon:"",stage:"Vegetative",status:"Active"},
+ task:"Awaiting confirmation",inputs:[],observations:[],harvests:[],sales:[],payments:[],events:[]
+});
+let state=fresh(),pending=null,timer;
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY));
+ if(saved&&saved.version===2&&saved.crop&&["inputs","observations","harvests","sales","payments","events"].every(k=>Array.isArray(saved[k])))state=saved;
+}catch(e){}
+
+function toast(text){
+ $("toast").textContent=text;$("toast").hidden=false;
+ clearTimeout(timer);timer=setTimeout(()=>$("toast").hidden=true,4500);
+}
+function log(text,source){
+ state.events.unshift({id:id(),at:new Date().toISOString(),text,source});
+}
+function persist(){
+ try{localStorage.setItem(KEY,JSON.stringify(state));$("storage").textContent="Saved on this browser only · Not a cloud database";}
+ catch(e){$("storage").textContent="Storage blocked · Records last only while this page remains open";}
+}
+function commit(message){persist();render();if(message)toast(message);}
+function tab(name){
+ document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!==name);
+ document.querySelectorAll("[data-tab]").forEach(b=>{
+  const active=b.dataset.tab===name;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active));
+ });
+}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.tab)));
+
+document.querySelectorAll("[data-open-demo]").forEach(a=>{
+ a.setAttribute("target","_self");
+ a.addEventListener("click",e=>{
+  e.preventDefault();$("demo").open=true;
+  $("demo").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+ });
+});
+window.addEventListener("hashchange",()=>{if(location.hash==="#demo")$("demo").open=true;});
+
+function weather(){
+ const modes={
+  rain:["16°C","Rain in the area","4.2 mm/h","14 km/h","94%","Rain may affect planned field work. Check actual conditions, product labels, and agronomist guidance before any application."],
+  dry:["23°C","Dry conditions","0 mm/h","8 km/h","62%","Dry weather is not automatic clearance to spray. Crop stage, wind, product labels, and agronomist guidance still matter."],
+  unknown:["—","Weather unavailable","Unknown","Unknown","Unknown","No reliable weather update is available. Check the plot rather than assuming conditions from an old forecast."]
+ };
+ const w=modes[$("weatherMode").value];
+ ["temp","condition","rain","wind","humidity","advice"].forEach((key,i)=>$(key).textContent=w[i]);
+}
+$("weatherMode").addEventListener("change",weather);
+
+function render(){
+ const c=state.crop;
+ $("farmTitle").textContent=c.plot;
+ $("cropSubtitle").textContent=c.name+" · "+c.stage+" · "+c.status;
+ $("cropNameDisplay").textContent=c.name;
+ $("stageDisplay").textContent=c.stage;
+ $("dateDisplay").textContent="Planted "+c.planted+" · Estimated harvest "+(c.expected||"not set");
+ $("progress").innerHTML=stages.map((s,i)=>'<span class="'+(i<=stages.indexOf(c.stage)?"on":"")+'"></span>').join("");
+ $("taskDisplay").textContent=state.task;
+ const fields={plot:c.plot,cropInput:c.name,planted:c.planted,expected:c.expected,lat:c.lat,lon:c.lon,stage:c.stage};
+ Object.keys(fields).forEach(k=>$(k).value=fields[k]);
+ $("closeCycle").textContent=c.status==="Active"?"Close crop cycle":"Reopen crop cycle";
+ const sales=state.sales.reduce((n,s)=>n+s.cents,0);
+ const paid=state.payments.reduce((n,p)=>n+p.cents,0);
+ $("harvestCount").textContent=state.harvests.length;
+ $("salesTotal").textContent=format(sales/100);
+ $("paidTotal").textContent=format(paid/100);
+ const oldH=$("saleHarvest").value,oldS=$("paymentSale").value;
+ $("saleHarvest").innerHTML='<option value="">Choose a harvest</option>'+state.harvests.map(h=>{
+  const sold=state.sales.filter(s=>s.harvestId===h.id).reduce((n,s)=>n+s.qty,0);
+  return '<option value="'+escape(h.id)+'">'+escape(h.qty+" "+h.unit+" · "+h.date+" · "+format(h.qty-sold)+" unsold")+'</option>';
+ }).join("");
+ if(state.harvests.some(h=>h.id===oldH))$("saleHarvest").value=oldH;
+ $("paymentSale").innerHTML='<option value="">Choose a sale</option>'+state.sales.map(s=>{
+  const paid=state.payments.filter(p=>p.saleId===s.id).reduce((n,p)=>n+p.cents,0);
+  return '<option value="'+escape(s.id)+'">'+escape(s.buyer+" · KES "+format((s.cents-paid)/100)+" due")+'</option>';
+ }).join("");
+ if(state.sales.some(s=>s.id===oldS))$("paymentSale").value=oldS;
+ $("harvestList").innerHTML=state.harvests.slice().reverse().map(h=>'<div class="entry"><strong>'+escape(h.qty+" "+h.unit)+'</strong><small>'+escape(h.date+" · "+(h.kg===null?"Not weighed":h.kg+" kg measured")+" · "+h.source)+'</small></div>').join("")||"No harvest recorded yet.";
+ $("events").innerHTML=state.events.map(e=>'<div class="entry">'+escape(e.text)+'<small>'+escape(e.source+" · "+new Date(e.at).toLocaleString())+'</small></div>').join("")||'<p class="small muted">Your activity history will appear here.</p>';
+ const units={};state.harvests.forEach(h=>units[h.unit]=(units[h.unit]||0)+h.qty);
+ const total=Object.keys(units).map(k=>format(units[k])+" "+k).join(", ");
+ $("seasonSummary").textContent=c.name+" · "+c.status+". "+state.inputs.length+" input application(s), "+state.observations.length+" growth observation(s), "+state.harvests.length+" harvest entry/entries. "+(total?"Harvest: "+total+". Unlike units are not combined. ":"")+"Sales KES "+format(sales/100)+". Payments KES "+format(paid/100)+". Outstanding KES "+format((sales-paid)/100)+".";
+}
+function task(status,source){
+ if(state.task===status)return toast("This status is already recorded.");
+ state.task=status;
+ log("Drainage check: "+status+".",source);
+ commit("Task updated. No real SMS was sent.");
+}
+document.querySelectorAll("[data-task]").forEach(b=>b.addEventListener("click",()=>task(b.dataset.task,"Farmer · web demo")));
+
+$("cropForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!$("plot").value.trim()||!$("cropInput").value.trim())return toast("Enter a plot and crop name.");
+ if($("expected").value&&$("expected").value<$("planted").value)return toast("Harvest cannot precede planting.");
+ if(($("lat").value==="")!==($("lon").value===""))return toast("Enter both coordinates or leave both blank.");
+ Object.assign(state.crop,{plot:$("plot").value.trim(),name:$("cropInput").value.trim(),planted:$("planted").value,expected:$("expected").value,lat:$("lat").value,lon:$("lon").value});
+ log("Plot and crop details updated.","Farmer · web demo");commit("Crop details saved.");
+});
+$("closeCycle").addEventListener("click",()=>{
+ const close=state.crop.status==="Active";
+ if(!confirm(close?"Close this crop cycle? This does not mark sales as paid.":"Reopen this crop cycle?"))return;
+ state.crop.status=close?"Closed":"Active";log("Crop cycle "+state.crop.status.toLowerCase()+".","Farmer · web demo");commit("Cycle updated.");
+});
+$("stageForm").addEventListener("submit",e=>{
+ e.preventDefault();state.crop.stage=$("stage").value;
+ const note=$("observation").value.trim();
+ state.observations.push({id:id(),stage:state.crop.stage,note,date:date(),source:"Farmer · web demo"});
+ log("Growth observation: "+state.crop.stage+(note?" — "+note:""),"Farmer · web demo");
+ $("observation").value="";commit("Observation saved.");
+});
+$("inputForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const product=$("product").value.trim();if(!product)return toast("Enter a product or description.");
+ const qty=$("inputQty").value===""?null:Number($("inputQty").value);
+ const r={id:id(),type:$("inputType").value,product,qty,unit:qty===null?null:$("inputUnit").value,date:$("inputDate").value,approval:"Not reviewed"};
+ state.inputs.push(r);
+ log(r.type+": "+product+" · "+(qty===null?"Quantity unknown":qty+" "+r.unit)+" · Applied "+r.date+" · Not reviewed.","Farmer · web demo");
+ $("inputForm").reset();$("inputDate").value=date();commit("Self-reported application saved.");
+});
+
+function addHarvest(qty,unit,on,kg,source){
+ if(state.crop.status!=="Active"){toast("Reopen the cycle before recording another harvest.");return false;}
+ if(!Number.isFinite(qty)||qty<=0){toast("Enter a positive quantity.");return false;}
+ if(unit==="kg"&&kg!==null&&Math.abs(qty-kg)>.001){toast("Kilogram quantity and measured weight must match.");return false;}
+ state.harvests.push({id:id(),qty,unit,date:on,kg:unit==="kg"?qty:kg,source});
+ log("Harvest: "+qty+" "+unit+" on "+on+".",source);
+ commit("Harvest recorded. Cycle remains open.");return true;
+}
+$("harvestForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(addHarvest(Number($("harvestQty").value),$("harvestUnit").value,$("harvestDate").value,$("weight").value===""?null:Number($("weight").value),"Farmer · web demo")){
+  $("harvestForm").reset();$("harvestDate").value=date();
+ }
+});
+
+function clearSms(){pending=null;$("smsPreview").hidden=true;$("confirmSms").hidden=true;}
+$("smsText").addEventListener("input",clearSms);
+$("smsForm").addEventListener("submit",e=>{
+ e.preventDefault();clearSms();
+ const text=$("smsText").value.trim().toUpperCase().replace(/\s+/g," ");
+ let message;
+ if(text==="D1 YES"||text==="D1 LATER"){
+  pending={type:"task",status:text==="D1 YES"?"Completed":"Not yet"};
+  message="Draft: drainage check reported "+pending.status.toLowerCase()+". Confirm to save.";
+ }else{
+  const m=text.match(/^HARVEST (\d+(?:\.\d{1,2})?) (CRATES?|BAGS?|KG)$/);
+  if(m&&Number(m[1])>0){
+   const unit=m[2].startsWith("CRATE")?"crates":m[2].startsWith("BAG")?"bags":"kg";
+   pending={type:"harvest",qty:Number(m[1]),unit};
+   message="Draft: "+m[1]+" "+unit+", "+state.crop.name+", "+state.crop.plot+", today ("+date()+"). Confirm only if these details are correct.";
+  }else message="Could not interpret safely. Try D1 YES, D1 LATER, or HARVEST 6 CRATES. Nothing has been recorded.";
+ }
+ $("smsPreview").textContent=message;$("smsPreview").hidden=false;$("confirmSms").hidden=!pending;
+});
+$("confirmSms").addEventListener("click",()=>{
+ if(!pending)return;
+ if(pending.type==="task")task(pending.status,"Farmer · simulated SMS");
+ else if(!addHarvest(pending.qty,pending.unit,date(),null,"Farmer · simulated SMS"))return;
+ clearSms();$("smsText").value="";
+});
+
+$("saleForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const h=state.harvests.find(h=>h.id===$("saleHarvest").value);
+ if(!h)return toast("Choose a harvest first.");
+ const qty=Number($("saleQty").value);
+ const sold=state.sales.filter(s=>s.harvestId===h.id).reduce((n,s)=>n+s.qty,0);
+ if(qty+sold>h.qty+.000001)return toast("That exceeds the unsold quantity.");
+ const buyer=$("buyer").value.trim();if(!buyer)return toast("Enter a buyer alias.");
+ const cents=Math.round(Number($("saleAmount").value)*100);
+ state.sales.push({id:id(),harvestId:h.id,buyer,qty,unit:h.unit,cents,date:date()});
+ log("Sale: "+qty+" "+h.unit+" to "+buyer+", KES "+format(cents/100)+".","Farmer · web demo");
+ $("saleForm").reset();commit("Sale saved. Payment is tracked separately.");
+});
+$("paymentForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const s=state.sales.find(s=>s.id===$("paymentSale").value);
+ if(!s)return toast("Choose a sale first.");
+ const cents=Math.round(Number($("paidAmount").value)*100);
+ const paid=state.payments.filter(p=>p.saleId===s.id).reduce((n,p)=>n+p.cents,0);
+ if(cents>s.cents-paid)return toast("This exceeds the outstanding amount.");
+ const ref=$("reference").value.trim().toUpperCase();
+ if(ref&&state.payments.some(p=>p.ref===ref))return toast("Reference already recorded. Check for a duplicate.");
+ const method=$("method").value;
+ state.payments.push({id:id(),saleId:s.id,cents,method,ref,date:date(),verification:"User-entered; not independently verified"});
+ log("Payment: KES "+format(cents/100)+" via "+method+" for "+s.buyer+". Not independently verified.","Farmer · web demo");
+ $("paymentForm").reset();$("receipt").value="";commit("Payment recorded.");
+});
+$("parseReceipt").addEventListener("click",()=>{
+ const text=$("receipt").value.trim();
+ const amount=text.match(/(?:you have\s+)?received\s+Ksh\s*([\d,]+(?:\.\d{1,2})?)/i);
+ const ref=text.match(/^([A-Z0-9]{8,12})\s+Confirmed\b/i);
+ if(!amount||!ref)return toast("Unsupported receipt format. Enter payment manually.");
+ const value=Number(amount[1].replace(/,/g,""));
+ if(!Number.isFinite(value)||value<=0)return toast("Could not extract a valid amount.");
+ $("paidAmount").value=value.toFixed(2);$("reference").value=ref[1].toUpperCase();$("method").value="M-Pesa";
+ toast("Draft fields filled. Choose a sale and review before saving. Payment is not verified.");
+});
+$("export").addEventListener("click",()=>{
+ const blob=new Blob([JSON.stringify({notice:"Unverified local demonstration records",exportedAt:new Date().toISOString(),...state},null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="farmkuest-records.json";document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+ toast("Export requested. Your browser may ask where to save it.");
+});
+$("reset").addEventListener("click",()=>{
+ if(!confirm("Delete this browser's demo records and start again?"))return;
+ state=fresh();document.querySelectorAll("form").forEach(f=>f.reset());$("receipt").value="";
+ $("inputDate").value=date();$("harvestDate").value=date();clearSms();weather();commit("Demo reset.");tab("today");
+});
+$("print").addEventListener("click",()=>window.print());
+
+$("inputDate").value=date();$("harvestDate").value=date();
+render();persist();weather();tab("today");
+$("runtimeNotice").textContent="Interactive demo ready. Records stay in this browser; weather, SMS, and payment verification are not connected services.";
+})();
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
